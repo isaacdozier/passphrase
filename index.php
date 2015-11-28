@@ -1,3 +1,3 @@
 <?php
-echo 'test2.1.extra';
+echo 'test2.1';
 ?>
