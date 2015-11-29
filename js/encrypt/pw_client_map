@@ -1,36 +1,60 @@
+function makeid(len) {
+    var text = "";
+    var stringSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+    for( var i=0; i < len; i++ )
+        text += stringSet.charAt(Math.floor(Math.random() * stringSet.length));
+
+    return text;
+}
+
+function pwShadow(pw){
+  var tmp = pw.split('');
+  var clientArr = [];
+  tmp.map(function(val, index){
+    return clientArr.push(index);
+  });
+  
+  return clientArr;
+}
+
 function stringSelect(pw) {
   var sh = pw.length/2;
   return pw.split('').sort().splice(sh, sh);
 }
 
+function sumitup(array) {return array.reduce(function(a, b){return a+b;});}
+
 function mapBuild(pw, cc){
   var tmp = pwShadow(pw);
-  var pwArr = pw.split('');
+  var pwArr = pw.split('');  
+  
   var compass = [];
-  var cL = compass.join('').length;
-  
-  
   var map = pwArr.map(function(val){
-       
-      if(cc.indexOf(val) > -1){
-        compass.push(val);
-        return pwArr.indexOf(val);
-      } else {
-        compass.push(pwArr.indexOf(val));
-        return val;
-      }
+    
+    //Let's build our map and compass
+    //check if looped value is located in stringSelect() string set
+    if(cc.indexOf(val) > -1){
+      //exists in array
+      return pwArr.indexOf(val);
+    } else {
+      //does NOT exists in array, build compass, add to map
+      compass.push(pwArr.indexOf(val));
+      return val;
+    }
+    
   });
   
-  console.log('--BREAK--');
-  console.log(pw.split(''));
-  console.log(tmp);
-  console.log(compass);
-  console.log(map);
-  
-  console.log(stringSelect(password));
-  
+  return [compass, mapSplash(map, sumitup(compass))];
 }
 
-var password = "New Yourk Yankee";
+function mapSplash(map, sum){
+  return map.map(function(val){
+    return val + makeid(sum);
+  }).join('');
+}
 
-mapBuild(password, stringSelect(password));
+
+var password = "password";
+
+console.log(mapBuild(password, stringSelect(password)));
