@@ -2,22 +2,35 @@ function mapBuild(pw, cc){
   var tmp = pwShadow(pw);
   var pwArr = pw.split('');
   var compare = [];
+  var ds = '';
+  
+  pwArr.map(function(val){  
+    if(ds === val){
+       cc.unshift(val);
+       ds = val;
+     } else {
+       ds = val;
+     }
+  });
+  
   var map = pwArr.map(function(val){
      
       if(cc.indexOf(val) > -1){
         return pwArr.indexOf(val) + 1;
       } else {
         compare.push(val);
-        return '';
+        return val;
       }
-    
   });
   
   console.log('--BREAK--');
-  console.log(compare);
-  console.log(tmp);
-  console.log(map);
   console.log(pw.split(''));
+  console.log(tmp);
+  console.log(compare);
+  console.log(map);
+  
+  console.log(ds);
+  
 }
 
 mapBuild('password', ['p', 'r', 'a']);
