@@ -1,7 +1,9 @@
 function pwShadow(pw){
   var tmp = pw.split('');
   var clientArr = [];
-  tmp.map(function(val){return clientArr.push(' ');});
+  tmp.map(function(val, index){
+    return clientArr.push(index);
+  });
   
-  return clientArr
-};
+  return clientArr;
+}
