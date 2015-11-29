@@ -1,13 +1,3 @@
-function pwShadow(pw){
-  var tmp = pw.split('');
-  var clientArr = [];
-  tmp.map(function(val, index){
-    return clientArr.push(index);
-  });
-  
-  return clientArr;
-}
-
 function makeid(len) {
     var text = "";
     var stringSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
