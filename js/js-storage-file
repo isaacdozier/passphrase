@@ -1,0 +1,95 @@
+//helper
+function makeid(len) {
+    var text = "";
+    var stringSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+    for( var i=0; i < len; i++ )
+        text += stringSet.charAt(Math.floor(Math.random() * stringSet.length));
+
+    return text;
+}
+//**
+function pwShadow(pw){
+  var tmp = pw.split('');
+  var clientArr = [];
+  tmp.map(function(val, index){
+    return clientArr.push(index);
+  });
+  
+  return clientArr;
+}
+//**
+function stringSelect(pw) {
+  var sh = pw.length/2;
+  return pw.split('').sort().splice(sh, sh);
+}
+//**
+function sumitup(array) {return array.reduce(function(a, b){return a+b;});}
+//**
+function mapSplash(map, sum){
+  return map.map(function(val){
+    return val + makeid(sum);
+  }).join('');
+}
+//end helper --
+
+//output 
+//call function on password to encrypt. 
+//returns array containing [compass, encrypted-password-map]
+//**
+function mapBuild(pw){
+  var tmp = pwShadow(pw);
+  var pwArr = pw.split('');  
+  
+  var compass = [];
+  var map = pwArr.map(function(val){
+    
+    //Let's build our map and compass
+    //check if looped value is located in stringSelect() string set
+    if(stringSelect(pw).indexOf(val) > -1){
+      //exists in array
+      return pwArr.indexOf(val);
+    } else {
+      //does NOT exists in array, build compass, add to map
+      compass.push(pwArr.indexOf(val));
+      return val;
+    }
+    
+  });
+  
+  return [compass, mapSplash(map, sumitup(compass))];
+}
+//end output
+
+//*
+//**
+//***
+//developement -testing-
+var password = "password";
+var testPasswordEn = "pwOsgQHOIFadGTaBOODqVNDeempr2VyBaJIBsNWvCA2aYffmzXBFvvXe4bWbHpmIhBGJUJoCYnMpcqIwGZxQ6oYlvTEDYHwLmydkTvcSnQmxunQE";
+var testCompass = [0, 1, 5, 7];
+
+console.log('--BREAK--');
+//console.log(mapBuild(password));
+console.log(testPasswordEn);
+console.log(pwBreak(testPasswordEn, testCompass));
+//end dev -testing
+//***
+//**
+//*
+
+//seek-and-destroy
+//use function to decrypt password-map using compass
+function pwBreak(pw, cmp){
+  var sum = sumitup(cmp);
+  var tmp = pw.split('');
+  
+  var build = [];
+  for(i=0;i<tmp.join('').length;i++){
+    build.push(tmp.shift());
+    tmp.splice(0,sum);
+    
+  }
+  return build;
+}
+//end seek-and-destroy
