@@ -1,0 +1,3 @@
+function mapBuild(pw){
+  return pwShadow(pw);
+}
