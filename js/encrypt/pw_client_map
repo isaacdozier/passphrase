@@ -1,24 +1,22 @@
+function stringSelect(pw) {
+  var sh = pw.length/2;
+  return pw.split('').sort().splice(sh, sh);
+}
+
 function mapBuild(pw, cc){
   var tmp = pwShadow(pw);
   var pwArr = pw.split('');
-  var compare = [];
-  var ds = '';
+  var compass = [];
+  var cL = compass.join('').length;
   
-  pwArr.map(function(val){  
-    if(ds === val){
-       cc.unshift(val);
-       ds = val;
-     } else {
-       ds = val;
-     }
-  });
   
   var map = pwArr.map(function(val){
-     
+       
       if(cc.indexOf(val) > -1){
-        return pwArr.indexOf(val) + 1;
+        compass.push(val);
+        return pwArr.indexOf(val);
       } else {
-        compare.push(val);
+        compass.push(pwArr.indexOf(val));
         return val;
       }
   });
@@ -26,11 +24,13 @@ function mapBuild(pw, cc){
   console.log('--BREAK--');
   console.log(pw.split(''));
   console.log(tmp);
-  console.log(compare);
+  console.log(compass);
   console.log(map);
   
-  console.log(ds);
+  console.log(stringSelect(password));
   
 }
 
-mapBuild('password', ['p', 'r', 'a']);
+var password = "New Yourk Yankee";
+
+mapBuild(password, stringSelect(password));
