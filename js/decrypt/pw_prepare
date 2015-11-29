@@ -1,1 +1,18 @@
 
+var password = "password";
+var testPasswordEn = "pwOsgQHOIFadGTaBOODqVNDeempr2VyBaJIBsNWvCA2aYffmzXBFvvXe4bWbHpmIhBGJUJoCYnMpcqIwGZxQ6oYlvTEDYHwLmydkTvcSnQmxunQE";
+var testCompass = [0, 1, 5, 7];
+
+function pwBreak(pw, cmp){
+  var sum = sumitup(cmp);
+  var pwEn = pw;
+  var pwEnArr = pwEn.split('');
+  
+  var pwBuild = [];
+  for(i=0;i<pwEn.length;i++){
+    pwBuild.push(pwEnArr.shift());
+    pwEnArr.splice(0,sum);
+    
+  }
+  return pwBuild;
+}
