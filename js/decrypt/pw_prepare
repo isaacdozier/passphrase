@@ -5,14 +5,13 @@ var testCompass = [0, 1, 5, 7];
 
 function pwBreak(pw, cmp){
   var sum = sumitup(cmp);
-  var pwEn = pw;
-  var pwEnArr = pwEn.split('');
+  var tmp = pw.split('');
   
-  var pwBuild = [];
-  for(i=0;i<pwEn.length;i++){
-    pwBuild.push(pwEnArr.shift());
-    pwEnArr.splice(0,sum);
+  var build = [];
+  for(i=0;i<tmp.join('').length;i++){
+    build.push(tmp.shift());
+    tmp.splice(0,sum);
     
   }
-  return pwBuild;
+  return build;
 }
