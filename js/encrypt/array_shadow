@@ -3,14 +3,5 @@ function encrypt(pw){
   var clientArr = [];
   tmp.map(function(val){return clientArr.push(' ');});
   
-  var encrypted = tmp.map(function(val){
-    return val;
-  });
-  
-  console.log(pw);
-  console.log(tmp);
-  console.log(clientArr);
-  console.log(encrypted.join(''));
-}
-
-encrypt('sooooop');
+  return clientArr
+};
