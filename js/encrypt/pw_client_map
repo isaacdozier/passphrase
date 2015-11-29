@@ -1,3 +1,23 @@
-function mapBuild(pw){
-  return pwShadow(pw);
+function mapBuild(pw, cc){
+  var tmp = pwShadow(pw);
+  var pwArr = pw.split('');
+  var compare = [];
+  var map = pwArr.map(function(val){
+     
+      if(cc.indexOf(val) > -1){
+        return pwArr.indexOf(val) + 1;
+      } else {
+        compare.push(val);
+        return '';
+      }
+    
+  });
+  
+  console.log('--BREAK--');
+  console.log(compare);
+  console.log(tmp);
+  console.log(map);
+  console.log(pw.split(''));
 }
+
+mapBuild('password', ['p', 'r', 'a']);
