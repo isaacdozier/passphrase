@@ -3,17 +3,16 @@ var password = "password";
 var Pass = "pqwrRqzvKUzPkyaWKIO29yl566mN2CQ8FpHKXOr93F2cR6puDcDnGcix4klWd6bocUiJUco9XzkMSdTkW7BF6uNuuMv6yiYaYYdcojIc3wiku0BZ";
 var Compass = [0, 1, 5, 7];
 
-//helper
+//helpers
 function makeid(len) {
     var text = "";
     var stringSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for( var i=0; i < len; i++ )
+    for( var i=0; i < len; i++ ){
         text += stringSet.charAt(Math.floor(Math.random() * stringSet.length));
-
+    }
     return text;
 }
-//**
+
 function pwShadow(pw){
   var tmp = pw.split('');
   var clientArr = [];
@@ -23,14 +22,15 @@ function pwShadow(pw){
   
   return clientArr;
 }
-//**
+
 function stringSelect(pw) {
   var sh = pw.length/2;
+  
   return pw.split('').sort().splice(sh, sh);
 }
-//**
+
 function sumitup(array) {return array.reduce(function(a, b){return a+b;});}
-//**
+
 function mapSplash(map, sum){
   return map.map(function(val){
     return val + makeid(sum);
@@ -67,8 +67,9 @@ function mapBuild(pw){
 //end output
 
 
-
-//seek-and-destroy
+//*
+//**
+//Decrypt password
 //use function to decrypt password-map using compass
 function pwBreak(pw, cmp){
   var sum = sumitup(cmp);
@@ -80,11 +81,19 @@ function pwBreak(pw, cmp){
     tmp.splice(0,sum);
     
   }
-  return build;
+  return build.join('');
 }
 
-var output = pwBreak(Pass, Compass).join('');
-//end seek-and-destroy
+var output = pwBreak(Pass, Compass);
+var compassSum = sumitup(output.replace(/[^0-9]/g, '').split('').map(function(val){
+  return Number(val);
+}));
+var CompassSum = sumitup(Compass);
+
+function mapBase(pwBroken){
+  
+}
+//end Decrypt
 
 //*
 //**
@@ -92,9 +101,10 @@ var output = pwBreak(Pass, Compass).join('');
 //developement -testing-
 
 console.log('--BREAK--');
-//console.log(mapBuild(password));
 console.log(Pass);
 console.log(output);
+console.log(CompassSum);
+console.log(compassSum);
 //end dev -testing
 //***
 //**
