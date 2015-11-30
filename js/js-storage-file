@@ -1,7 +1,12 @@
+//test variables
+var password = "password";
+var Pass = "pqwrRqzvKUzPkyaWKIO29yl566mN2CQ8FpHKXOr93F2cR6puDcDnGcix4klWd6bocUiJUco9XzkMSdTkW7BF6uNuuMv6yiYaYYdcojIc3wiku0BZ";
+var Compass = [0, 1, 5, 7];
+
 //helper
 function makeid(len) {
     var text = "";
-    var stringSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    var stringSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     for( var i=0; i < len; i++ )
         text += stringSet.charAt(Math.floor(Math.random() * stringSet.length));
@@ -61,22 +66,7 @@ function mapBuild(pw){
 }
 //end output
 
-//*
-//**
-//***
-//developement -testing-
-var password = "password";
-var testPasswordEn = "pwOsgQHOIFadGTaBOODqVNDeempr2VyBaJIBsNWvCA2aYffmzXBFvvXe4bWbHpmIhBGJUJoCYnMpcqIwGZxQ6oYlvTEDYHwLmydkTvcSnQmxunQE";
-var testCompass = [0, 1, 5, 7];
 
-console.log('--BREAK--');
-//console.log(mapBuild(password));
-console.log(testPasswordEn);
-console.log(pwBreak(testPasswordEn, testCompass));
-//end dev -testing
-//***
-//**
-//*
 
 //seek-and-destroy
 //use function to decrypt password-map using compass
@@ -92,4 +82,20 @@ function pwBreak(pw, cmp){
   }
   return build;
 }
+
+var output = pwBreak(Pass, Compass).join('');
 //end seek-and-destroy
+
+//*
+//**
+//***
+//developement -testing-
+
+console.log('--BREAK--');
+//console.log(mapBuild(password));
+console.log(Pass);
+console.log(output);
+//end dev -testing
+//***
+//**
+//*
