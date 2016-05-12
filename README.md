@@ -1,4 +1,3 @@
 # passphrase
-Passphrase creating algorythm
-
-This app is under construction
+encrypt/decrypt algorythm
+*for testing only
